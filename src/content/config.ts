@@ -52,60 +52,6 @@ const sectorSchema = z.object({
   relatedCaseStudies: z.array(z.string()).optional().default([]),
 });
 
-/** Global Challenge schema */
-const globalChallengeSchema = z.object({
-  title: z.string().min(5),
-  slug: z.string().optional(),
-  description: z.string().optional().default(''),
-  featured: z.boolean().optional().default(false),
-  featuredImage: z.string().optional().default(DEFAULT_FEATURED_IMAGE),
-  SDGs: z.array(z.number()).optional().default([]),
-  organisations: z.array(z.string()).optional().default([]),
-
-  paris_agreement: z
-    .object({
-      article: z.string(),
-      summary: z.string(),
-      link: z.string().url(),
-    })
-    .optional(),
-
-  sendai_framework: z
-    .object({
-      references: z.array(
-        z.object({
-          code: z.string(),
-          summary: z.string(),
-          link: z.string().url(),
-        })
-      ),
-    })
-    .optional(),
-
-  space2030: z
-    .object({
-      section: z.string(),
-      summary: z.string(),
-      link: z.string().url(),
-    })
-    .optional(),
-
-  seoTitle: z.string().max(70).optional().default(''),
-  seoDescription: z.string().max(160).optional().default(''),
-});
-
-/** Space Apps schema */
-const spaceAppSchema = z.object({
-  title: z.string().min(5),
-  markets: z.string().optional().default(''),
-  description: z.string().optional().default(''),
-  domains: z.string().optional().default(''),
-  copernicus: z.enum(['Yes', 'No']).optional().default('No'),
-  EGNSS: z.enum(['Yes', 'No']).optional().default('No'),
-  SDGs: z.array(z.number()).optional().default([]),
-  slug: z.string().optional(),
-  featuredImage: z.string().optional().default(DEFAULT_FEATURED_IMAGE),
-});
 
 /** 🔥 Service Areas schema — for local SEO pages */
 const serviceAreaSchema = z.object({
@@ -132,20 +78,12 @@ export const collections = {
   "press-releases": defineCollection({ schema: baseSchema }),
   tools: defineCollection({ schema: baseSchema }),
   insights: defineCollection({ schema: baseSchema }),
-  "space-sustainability": defineCollection({ schema: baseSchema }),
-  campaigns: defineCollection({ schema: baseSchema }),
-  careers: defineCollection({ schema: baseSchema }),
-  domains: defineCollection({ schema: baseSchema }),
-  earth: defineCollection({ schema: baseSchema }),
   pledges: defineCollection({ schema: baseSchema }),
   team: defineCollection({ schema: baseSchema }),
   training: defineCollection({ schema: baseSchema }),
   values: defineCollection({ schema: baseSchema }),
-
   "case-studies": defineCollection({ schema: caseStudySchema }),
   sectors: defineCollection({ schema: sectorSchema }),
-  "global-challenges": defineCollection({ schema: globalChallengeSchema }),
-  "space-applications": defineCollection({ schema: spaceAppSchema }),
   "service-areas": defineCollection({ schema: serviceAreaSchema }), // optional if used
   organisations: defineCollection({ schema: baseSchema }),
 };
