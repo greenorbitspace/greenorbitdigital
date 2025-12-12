@@ -22,7 +22,7 @@ jobs:
         with:
           node-version: 20
 
-      - name: Install dependencies (if package.json exists)
+      - name: Install dependencies
         run: |
           if [ -f package.json ]; then
             npm ci
@@ -30,26 +30,22 @@ jobs:
 
       - name: Build or copy files
         run: |
-          # Clean previous output
           rm -rf dist
           mkdir dist
 
           if [ -f package.json ]; then
-            echo "Detected package.json → Running build"
+            echo "🔧 Running npm build..."
             npm run build
           else
-            echo "Static site detected → Copying files"
-            # Copy everything except dist/, .git/, .github/
-            find . -maxdepth 1 \
-              ! -name "dist" \
-              ! -name ".git" \
-              ! -name ".github" \
-              ! -name "." \
-              -exec cp -R {} dist/ \;
+            echo "📁 Static site detected. Copying files..."
+            rsync -av --exclude=dist --exclude=.git --exclude=.github ./ dist/
           fi
 
-          echo "Dist directory contents:"
+          echo "🚀 Final dist contents:"
           ls -al dist
+
+      - name: Disable Jekyll
+        run: touch dist/.nojekyll
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
@@ -62,7 +58,6 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
