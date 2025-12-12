@@ -1,0 +1,78 @@
+---
+/* About section component */
+import Testimonials from '../components/Testimonials.astro';
+---
+<!-- About Section -->
+<section id="about" class="about section">
+
+  <!-- Section Title -->
+  <div class="container section-title" data-aos="fade-up">
+    <h2>About</h2>
+    <div><span>Learn More</span> <span class="description-title">About Us</span></div>
+  </div>
+  <!-- End Section Title -->
+
+  <div class="container">
+
+    <div class="row gx-5 align-items-center">
+      
+      <div class="col-lg-6" data-aos="fade-right" data-aos-delay="200">
+        <div class="about-image position-relative">
+          <img src="/img/about/digital-hero.png"
+               class="img-fluid rounded-4 shadow-sm"
+               alt="Green Orbit Digital hero image"
+               loading="lazy">
+          <div class="experience-badge">
+            <span class="years">15+</span>
+            <span class="text">Years Experience</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6 mt-4 mt-lg-0" data-aos="fade-left" data-aos-delay="300">
+        <div class="about-content">
+        <h2>Where Digital Strategy Becomes Advantage</h2>
+        <p>
+          Green Orbit Digital combines data-driven marketing, content strategy, and sustainable growth practices to help organisations and startups amplify their mission, reach global audiences, and achieve measurable impact across the space and technology sectors.
+        </p>
+
+<div class="row g-4 mt-3">
+  
+          <div class="col-md-6" data-aos="zoom-in" data-aos-delay="400">
+            <div class="feature-item">
+              <i class="bi bi-check-circle-fill"></i>
+              <h5>Communications Expertise</h5>
+              <p>
+                Our team bridges communications, PR, and strategy to help space organisations craft narratives that inspire, educate, and engage audiences worldwide.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-6" data-aos="zoom-in" data-aos-delay="450">
+            <div class="feature-item">
+              <i class="bi bi-lightbulb-fill"></i>
+              <h5>Impactful Storytelling</h5>
+              <p>
+                We transform technical missions and complex initiatives into compelling stories that highlight impact, sustainability, and innovation for global audiences.
+              </p>
+            </div>
+          </div>
+
+</div>
+
+          <a href="/work" class="btn btn-primary mt-4">View Work</a>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Testimonials -->
+<Testimonials />
+
+      </div>
+    </div>
+
+  </div>
+
+</section>
+<!-- /About Section -->
