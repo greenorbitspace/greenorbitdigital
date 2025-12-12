@@ -172,26 +172,6 @@ declare module 'astro:content' {
   rendered?: RenderedContent;
   filePath?: string;
 }>;
-"campaigns": Record<string, {
-  id: string;
-  render(): Render[".md"];
-  slug: string;
-  body: string;
-  collection: "campaigns";
-  data: InferEntrySchema<"campaigns">;
-  rendered?: RenderedContent;
-  filePath?: string;
-}>;
-"careers": Record<string, {
-  id: string;
-  render(): Render[".md"];
-  slug: string;
-  body: string;
-  collection: "careers";
-  data: InferEntrySchema<"careers">;
-  rendered?: RenderedContent;
-  filePath?: string;
-}>;
 "case-studies": Record<string, {
   id: string;
   render(): Render[".md"];
@@ -199,36 +179,6 @@ declare module 'astro:content' {
   body: string;
   collection: "case-studies";
   data: InferEntrySchema<"case-studies">;
-  rendered?: RenderedContent;
-  filePath?: string;
-}>;
-"domains": Record<string, {
-  id: string;
-  render(): Render[".md"];
-  slug: string;
-  body: string;
-  collection: "domains";
-  data: InferEntrySchema<"domains">;
-  rendered?: RenderedContent;
-  filePath?: string;
-}>;
-"earth": Record<string, {
-  id: string;
-  render(): Render[".md"];
-  slug: string;
-  body: string;
-  collection: "earth";
-  data: InferEntrySchema<"earth">;
-  rendered?: RenderedContent;
-  filePath?: string;
-}>;
-"global-challenges": Record<string, {
-  id: string;
-  render(): Render[".md"];
-  slug: string;
-  body: string;
-  collection: "global-challenges";
-  data: InferEntrySchema<"global-challenges">;
   rendered?: RenderedContent;
   filePath?: string;
 }>;
@@ -309,26 +259,6 @@ declare module 'astro:content' {
   body: string;
   collection: "service-areas";
   data: InferEntrySchema<"service-areas">;
-  rendered?: RenderedContent;
-  filePath?: string;
-}>;
-"space-applications": Record<string, {
-  id: string;
-  render(): Render[".md"];
-  slug: string;
-  body: string;
-  collection: "space-applications";
-  data: InferEntrySchema<"space-applications">;
-  rendered?: RenderedContent;
-  filePath?: string;
-}>;
-"space-sustainability": Record<string, {
-  id: string;
-  render(): Render[".md"];
-  slug: string;
-  body: string;
-  collection: "space-sustainability";
-  data: InferEntrySchema<"space-sustainability">;
   rendered?: RenderedContent;
   filePath?: string;
 }>;
