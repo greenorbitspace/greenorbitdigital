@@ -11,77 +11,40 @@ permissions:
   id-token: write
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      # 1. Checkout full repository
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      # 1. Checkout repository
+      - uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # ensures full history for any relative imports
+          fetch-depth: 0
 
       # 2. Setup Node.js
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 20
 
-      # 3. Clean workspace
-      - name: Clean workspace
-        run: |
-          rm -rf dist node_modules
-          npm cache clean --force
-
-      # 4. Install dependencies if package.json exists
-      - name: Install dependencies
-        run: |
+      # 3. Install dependencies
+      - run: |
           if [ -f package.json ]; then
-            echo "package.json found → Installing dependencies"
             npm ci
-          else
-            echo "No package.json found → Skipping npm install"
           fi
 
-      # 5. Build site or copy static files
-      - name: Build site or copy static files
-        run: |
-          # Clean previous dist
-          rm -rf dist
-          mkdir dist
+      # 4. Build Astro project
+      - run: |
+          npm run build -- --no-cache
 
-          if [ -f package.json ]; then
-            echo "Detected package.json → Running Astro build"
-            npm run build -- --no-cache
-          else
-            echo "Static site detected → Copying files"
-            find . -maxdepth 1 \
-              ! -name "dist" \
-              ! -name ".git" \
-              ! -name ".github" \
-              ! -name "." \
-              -exec cp -R {} dist/ \;
-          fi
-
-          # Add .nojekyll to prevent GitHub Pages from running Jekyll
+          # Ensure .nojekyll exists
           touch dist/.nojekyll
-
-          echo "Dist directory contents:"
+          echo "Dist contents:"
           ls -al dist
 
-      # 6. Upload artifact for GitHub Pages
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+      # 5. Upload artifact for GitHub Pages
+      - uses: actions/upload-pages-artifact@v1
         with:
           path: dist
 
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    environment:
-      name: github-pages
-
-    steps:
-      # 7. Deploy to GitHub Pages
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      # 6. Deploy
+      - uses: actions/deploy-pages@v1
+        with:
+          artifact-path: dist
