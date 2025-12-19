@@ -12,12 +12,13 @@ export interface WebsiteSchemaProps {
 
 /**
  * Returns full Website JSON-LD object including LocalBusiness node
+ * for Green Orbit Digital, part of Impact Orbit Creative Group
  */
 export default function getWebsiteSchema({
   url,
   title,
-  description = "Green Orbit Digital is a sustainable marketing agency focused on the space sector, delivering SEO, digital strategy, and data-driven campaigns.",
-  featuredImage = "https://greenorbit.space/logos/organisations/greenorbit.png",
+  description = "Green Orbit Digital is a Leicester-based sustainable digital marketing agency, part of Impact Orbit Creative Group, specialising in SEO, content, analytics, and digital strategy for the space and technology sectors.",
+  featuredImage = "https://greenorbit.digital/logos/organisations/greenorbit.png",
   datePublished = "2023-10-12",
   dateModified = new Date().toISOString().split("T")[0],
   breadcrumbs
@@ -34,19 +35,24 @@ export default function getWebsiteSchema({
           "@type": "ListItem",
           position: 1,
           name: "Home",
-          item: "https://greenorbit.space"
+          item: "https://greenorbit.digital"
         }
       ];
 
   const baseOrganization = {
     "@type": "Organization",
-    "@id": "https://greenorbit.space/#organization",
+    "@id": "https://greenorbit.digital/#organization",
     name: "Green Orbit Digital",
-    legalName: "Green Orbit Digital Ltd",
-    url: "https://greenorbit.space",
-    logo: { "@id": "https://greenorbit.space/#logo" },
-    image: "https://greenorbit.space/favicon.svg",
-    description: "A sustainable marketing agency specialising in the space sector, delivering SEO, digital strategy, and data-driven campaigns aligned to environmental best practices.",
+    legalName: "Green Orbit Digital",
+    url: "https://greenorbit.digital",
+    parentOrganization: {
+      "@type": "Organization",
+      name: "Impact Orbit Creative Group",
+      url: "https://impactorbit.co"
+    },
+    logo: { "@id": "https://greenorbit.digital/#logo" },
+    image: "https://greenorbit.digital/logos/organisations/greenorbit.png",
+    description: "Green Orbit Digital is a sustainable digital marketing agency delivering SEO, analytics, content systems, and strategy for the space and technology sectors. Part of Impact Orbit Creative Group.",
     address: {
       "@type": "PostalAddress",
       streetAddress: "Leicester",
@@ -58,15 +64,15 @@ export default function getWebsiteSchema({
       {
         "@type": "ContactPoint",
         contactType: "customer support",
-        email: "hello@greenorbit.space",
+        email: "hello@greenorbit.digital",
         telephone: "+44 116 4830155",
         availableLanguage: ["en"]
       }
     ],
     sameAs: [
       "https://www.linkedin.com/company/greenorbitdigital/",
-      "https://x.com/greenorbitspace",
-      "https://www.instagram.com/greenorbitspace/"
+      "https://facebook.com/greenorbit.digital",
+      "https://www.instagram.com/greenorbit.digital/"
     ]
   };
 
@@ -75,23 +81,26 @@ export default function getWebsiteSchema({
     "@graph": [
       {
         "@type": "WebSite",
-        "@id": "https://greenorbit.space/#website",
-        url: "https://greenorbit.space",
+        "@id": "https://greenorbit.digital/#website",
+        url: "https://greenorbit.digital",
         name: "Green Orbit Digital",
-        alternateName: "Green Orbit Digital Ltd",
         publisher: { "@id": baseOrganization["@id"] },
         potentialAction: {
           "@type": "SearchAction",
-          target: "https://greenorbit.space/?s={search_term_string}",
+          target: "https://greenorbit.digital/?s={search_term_string}",
           "query-input": "required name=search_term_string"
+        },
+        breadcrumb: {
+          "@type": "BreadcrumbList",
+          itemListElement: breadcrumbList
         }
       },
       baseOrganization,
       {
         "@type": "LocalBusiness",
-        "@id": "https://greenorbit.space/#localbusiness",
+        "@id": "https://greenorbit.digital/#localbusiness",
         name: "Green Orbit Digital",
-        url: "https://greenorbit.space",
+        url: "https://greenorbit.digital",
         image: featuredImage,
         priceRange: "$$",
         address: {
@@ -110,8 +119,8 @@ export default function getWebsiteSchema({
       },
       {
         "@type": "ImageObject",
-        "@id": "https://greenorbit.space/#logo",
-        url: "https://greenorbit.space/logos/organisations/greenorbit.png",
+        "@id": "https://greenorbit.digital/#logo",
+        url: "https://greenorbit.digital/logos/organisations/greenorbit.png",
         caption: "Green Orbit Digital Logo"
       }
     ]
