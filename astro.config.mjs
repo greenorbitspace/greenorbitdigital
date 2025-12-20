@@ -2,6 +2,7 @@ import { defineConfig } from 'astro/config';
 import alpinejs from '@astrojs/alpinejs';
 import react from '@astrojs/react';
 import tailwind from '@astrojs/tailwind';
+import path from 'path';
 
 export default defineConfig({
   site: 'https://greenorbit.digital',
@@ -32,11 +33,11 @@ export default defineConfig({
     },
     resolve: {
       alias: {
-        '@components': '/src/components',
-        '@layouts': '/src/layouts',
-        '@styles': '/src/styles',
-        '@data': '/src/data',
-        '@assets': '/src/assets',
+        '@components': path.resolve('./src/components'),
+        '@layouts': path.resolve('./src/layouts'),
+        '@styles': path.resolve('./src/styles'),
+        '@data': path.resolve('./src/data'),
+        '@assets': path.resolve('./src/assets'),
       },
     },
     optimizeDeps: {
